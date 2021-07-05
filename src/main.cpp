@@ -12,9 +12,11 @@ int main(int argc, char *argv[]){
 	cout << ">>> Lendo arquivos de apostas [" << argv[1] << "]. Por favor, aguarde." << endl;
 	cout << "--------------------------------------------------------------------------------" << endl;
 
+	//valida documento de aposta
 	bool result = documentIsValid(argv);
 
 	if(result){
+		//transforma documento de aposta em um objeto Aposta
 		Aposta aposta = fileToValues(argv);
 		cout << ">>> Arquivo lido com sucesso!" << endl;
 
@@ -32,6 +34,7 @@ int main(int argc, char *argv[]){
 		cout << "--------------------------------------------------------------------------------" << endl;
 		cout << ">>> Daremos inicio as rodadas agora: \n" << endl;
 
+		//executa o jogo
 		for(int i = 0; i < aposta.get_rounds(); i++ ){
 			cout << "Esta é a aposta de número " << i+1 << " de " << aposta.get_rounds() << ". Boa sorte!" << endl;
 
@@ -44,20 +47,25 @@ int main(int argc, char *argv[]){
 			}
 			cout << "]\n" << endl;
 
+			//valida número de acertos
 			vector<int> numerosAcertados = acertos(aposta.get_spots(), numerosSorteados);
 			if(numerosAcertados.size() < 1){
 				cout << "Infelizmente você não acertou nenhum número.\n" << endl;
 			}else{
+				
 				cout << "Você acertou os números: [ ";
 				for(int i = 0; i < numerosAcertados.size(); i++){
 					cout << numerosAcertados[i] << " ";
 				}
 				cout << "]\n" << endl;
 				
+				//calcula taxa de retorno
 				double pontuacao = calculaPontos(aposta.get_spots().size(), numerosAcertados.size());
 
+				//calcula premio total
 				double premio = pontuacao * apostaPorRodada;
 
+				//adiciona premio aos créditos
 				aposta.set_plus_credit(premio);
 
 				cout << "Sua taxa de retorno é de " << pontuacao << ", assim você sai com: $" << premio << endl;
