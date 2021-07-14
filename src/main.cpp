@@ -6,6 +6,22 @@
 #include "../include/Aposta.hpp"
 #include "../include/Play.hpp"
 
+/*
+Avaliação
+Processamento do Arquivo de Entrada: 1
+Execução correta: 1
+Interfcace Textual: 1
+Documentação: 1
+Compilação automatizada: 1
+Organização em src, include, build, data: 1
+Comentários:
+- O arquivo play.cpp poderia ser facilmente transformado em uma classe Play ou KenoGame, algo do tipo, uma vez que logicamente
+o arquivo contém funções relacionadas ao jogo.
+- O arquivo util.cpp faz sentido em muitos casos porém o que ele faz no seu programa é validar o arquivo de apostas, logo faria
+mais sentido nomeá-lo de forma que remetesse o que realmente é feito. Uma forma legal era emcapsular o arquivo de apostas
+em uma classe e criar um método "isValid" ou "validate" que chamaria as funções/métodos que vc implementou no util.
+*/
+
 using namespace std;
 
 int main(int argc, char *argv[]){
